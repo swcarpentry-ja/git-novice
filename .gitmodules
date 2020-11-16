@@ -1,6 +1,6 @@
 [submodule "_locale/es"]
 	path = _locale/es
-	url = https://github.com/swcarpentry-i18n/git-novice-es.git
+	url = https://github.com/swcarpentry-ja/git-novice-es.git
 [submodule "_locale/ja"]
 	path = _locale/ja
 	url = https://github.com/swcarpentry-ja/git-novice-ja.git
