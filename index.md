@@ -1,6 +1,7 @@
 ---
 layout: lesson
-root: .
+root: .  # Is the only page that doesn't follow the pattern /:path/index.html
+permalink: index.html
 ---
 
 Wolfman and Dracula have been hired by Universal Missions (a space
