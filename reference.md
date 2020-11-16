@@ -1,6 +1,8 @@
 ---
 layout: reference
-
+Title: "Reference"
+root: ..
+permalink: /reference/
 ---
 
 ## Git Cheatsheets for Quick Reference
