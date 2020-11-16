@@ -1,6 +1,6 @@
 ---
 layout: reference
-Title: Reference
+Title: "Reference"
 root: ..
 permalink: /reference/
 ---
