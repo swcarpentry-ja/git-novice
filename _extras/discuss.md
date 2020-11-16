@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Discussion
+root: ..
 permalink: /discuss/
 ---
 
