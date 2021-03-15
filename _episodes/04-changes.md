@@ -359,7 +359,7 @@ but not yet committed.
 > than you would like!
 {: .callout}
 
-![The Git Staging Area](../fig/git-staging-area.svg)
+![The Git Staging Area](../../fig/git-staging-area.svg)
 
 Let's watch as our changes to a file move from our editor
 to the staging area
@@ -600,7 +600,7 @@ we first need to add the changed files to the staging area
 (`git add`) and then commit the staged changes to the
 repository (`git commit`):
 
-![The Git Commit Workflow](../fig/git-committing.svg)
+![The Git Commit Workflow](../../fig/git-committing.svg)
 
 > ## Choosing a Commit Message
 >
