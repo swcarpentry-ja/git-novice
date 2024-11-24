@@ -462,6 +462,8 @@ $ git commit -m "Use two images: surface and sky"
 | 5     | Update remote               | `git push origin main`           |
 | 6     | Celebrate!                  |                                   |
 
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
 - コンフリクトは、2人以上が同じファイルの同じ行を変更したときに発生します。
