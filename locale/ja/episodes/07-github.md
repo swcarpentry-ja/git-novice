@@ -53,25 +53,23 @@ $ git init
 もしあなたが以前の [エピソード](04-changes.md) を覚えていれば、私達は `mars.txt` に以前の作業を追加してコミットしました。
 ローカルリポジトリのダイアグラムは次のようになります：
 
-![](fig/git-staging-area.svg){alt='A diagram showing how "git add" registers changes in the staging area, while "git commit" moves changes from the staging area to the repository'}
+![](fig/git-staging-area.svg){alt='「git add」で変更がステージングエリアに登録され、「git commit」でステージングエリアからリポジトリに変更が移動する様子を示した図'}
 
-Now that we have two repositories, we need a diagram like this:
+現在、2つのリポジトリを持っているので、このような図が必要です：
 
-![](fig/git-freshly-made-github-repo.svg){alt='A diagram illustrating how the GitHub "planets" repository is also a git repository like our local repository, but that it is currently empty'}
+![](fig/git-freshly-made-github-repo.svg){alt='GitHubの「planets」リポジトリが、ローカルリポジトリと同様にgitリポジトリであることを示す図。ただし、現在は空の状態。'}
 
-Note that our local repository still contains our earlier work on `mars.txt`, but the
-remote repository on GitHub appears empty as it doesn't contain any files yet.
+ローカルリポジトリには先ほど作成した `mars.txt` に関する作業がまだ含まれていますが、  
+GitHub上のリモートリポジトリはまだファイルが含まれていないため空に見えます。
 
-## 2\. Connect local to remote repository
+## 2\. ローカルリポジトリとリモートリポジトリを接続する
 
-Now we connect the two repositories.  We do this by making the
-GitHub repository a [remote](../learners/reference.md#remote) for the local repository.
-The home page of the repository on GitHub includes the URL string we need to
-identify it:
+次に、2つのリポジトリを接続します。これを行うには、GitHubリポジトリをローカルリポジトリの[リモート](../learners/reference.md#remote)として設定します。  
+GitHub上のリポジトリのホームページには、それを特定するために必要なURL文字列が含まれています：
 
-![](fig/github-find-repo-string.png){alt='Clicking the "Copy to Clipboard" button on GitHub to obtain the repository\'s URL'}
+![](fig/github-find-repo-string.png){alt='GitHubでリポジトリのURLを取得するために「Copy to Clipboard」ボタンをクリックする様子'}
 
-Click on the 'SSH' link to change the [protocol](../learners/reference.md#protocol) from HTTPS to SSH.
+'SSH'リンクをクリックして、[プロトコル](../learners/reference.md#protocol)をHTTPSからSSHに変更してください。
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
@@ -120,7 +118,7 @@ SSHは「鍵ペア」というものを使用します。鍵ペアは、アク�
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
-## 高度なSSH
+## SSH（上級編）
 
 このレッスンの補足エピソードでは、SSHと鍵ペアについてさらに深く詳しく説明しています。
 
