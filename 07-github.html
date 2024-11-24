@@ -261,7 +261,7 @@
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B">1. リモートリポジトリを作成する。</a></li>
-<li><a href="#connect-local-to-remote-repository">2. Connect local to remote repository</a></li>
+<li><a href="#%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%81%A8%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%82%92%E6%8E%A5%E7%B6%9A%E3%81%99%E3%82%8B">2. ローカルリポジトリとリモートリポジトリを接続する</a></li>
 <li><a href="#ssh-%E3%81%AE%E8%83%8C%E6%99%AF%E3%81%A8%E8%A8%AD%E5%AE%9A">3. SSH の背景と設定</a></li>
 <li><a href="#%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E3%81%AE%E5%A4%89%E6%9B%B4%E3%82%92%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%81%AB%E3%83%97%E3%83%83%E3%82%B7%E3%83%A5%E3%81%99%E3%82%8B">4. ローカルの変更をリモートにプッシュする</a></li>
         </ul></div><!--/div.accordion-body-->
@@ -463,16 +463,14 @@ license.」の両方のオプションを「None」のままにします。
 を覚えていれば、私達は <code>mars.txt</code>
 に以前の作業を追加してコミットしました。
 ローカルリポジトリのダイアグラムは次のようになります：</p>
-<figure><img src="fig/git-staging-area.svg" alt='A diagram showing how "git add" registers changes in the staging area, while "git commit" moves changes from the staging area to the repository' class="figure mx-auto d-block"></figure><p>Now that we have two repositories, we need a diagram like this:</p>
-<figure><img src="fig/git-freshly-made-github-repo.svg" alt='A diagram illustrating how the GitHub "planets" repository is also a git repository like our local repository, but that it is currently empty' class="figure mx-auto d-block"></figure><p>Note that our local repository still contains our earlier work on
-<code>mars.txt</code>, but the remote repository on GitHub appears empty
-as it doesn’t contain any files yet.</p>
-</section><section><h2 class="section-heading" id="connect-local-to-remote-repository">2. Connect local to remote repository<a class="anchor" aria-label="anchor" href="#connect-local-to-remote-repository"></a></h2>
-<hr class="half-width"><p>Now we connect the two repositories. We do this by making the GitHub
-repository a <a href="reference.html#remote">remote</a> for the local
-repository. The home page of the repository on GitHub includes the URL
-string we need to identify it:</p>
-<figure><img src="fig/github-find-repo-string.png" alt="Clicking the &quot;Copy to Clipboard&quot; button on GitHub to obtain the repository's URL" class="figure mx-auto d-block"></figure><p>Click on the ‘SSH’ link to change the <a href="reference.html#protocol">protocol</a> from HTTPS to SSH.</p>
+<figure><img src="fig/git-staging-area.svg" alt="「git add」で変更がステージングエリアに登録され、「git commit」でステージングエリアからリポジトリに変更が移動する様子を示した図" class="figure mx-auto d-block"></figure><p>現在、2つのリポジトリを持っているので、このような図が必要です：</p>
+<figure><img src="fig/git-freshly-made-github-repo.svg" alt="GitHubの「planets」リポジトリが、ローカルリポジトリと同様にgitリポジトリであることを示す図。ただし、現在は空の状態。" class="figure mx-auto d-block"></figure><p>ローカルリポジトリには先ほど作成した <code>mars.txt</code>
+に関する作業がまだ含まれていますが、<br>
+GitHub上のリモートリポジトリはまだファイルが含まれていないため空に見えます。</p>
+</section><section><h2 class="section-heading" id="ローカルリポジトリとリモートリポジトリを接続する">2. ローカルリポジトリとリモートリポジトリを接続する<a class="anchor" aria-label="anchor" href="#%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%81%A8%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%82%92%E6%8E%A5%E7%B6%9A%E3%81%99%E3%82%8B"></a></h2>
+<hr class="half-width"><p>次に、2つのリポジトリを接続します。これを行うには、GitHubリポジトリをローカルリポジトリの<a href="reference.html#remote">リモート</a>として設定します。<br>
+GitHub上のリポジトリのホームページには、それを特定するために必要なURL文字列が含まれています：</p>
+<figure><img src="fig/github-find-repo-string.png" alt="GitHubでリポジトリのURLを取得するために「Copy to Clipboard」ボタンをクリックする様子" class="figure mx-auto d-block"></figure><p>’SSH’リンクをクリックして、<a href="reference.html#protocol">プロトコル</a>をHTTPSからSSHに変更してください。</p>
 <div id="https-対-ssh" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -517,12 +515,12 @@ SSHは暗号化ネットワークプロトコルで、安全でないネット�
 <p>SSHは「鍵ペア」というものを使用します。鍵ペアは、アクセスを検証するために一緒に動作する2つの鍵です。1つは「公開鍵」と呼ばれる公開される鍵で、もう1つは秘密にされる「秘密鍵」です。それぞれの名前の通りの役割を持っています。</p>
 <p>公開鍵を南京錠、秘密鍵をその南京錠を開ける鍵と考えることができます。公開鍵をGitHubのような安全な通信を必要とする場所に提供します。これにより、「この南京錠（公開鍵）を使って私のアカウントへの通信をロックしてください。私の秘密鍵を持っているコンピュータだけが通信を解除し、Gitコマンドを私のGitHubアカウントとして送信できます」と指示することができます。</p>
 <p>ここでは、SSH鍵を設定し、公開鍵をGitHubアカウントに追加するために必要な最小限の手順を説明します。</p>
-<div id="高度なssh" class="callout">
+<div id="ssh上級編" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="高度なssh" class="callout-inner">
-<h3 class="callout-title">高度なSSH</h3>
+<div id="ssh上級編" class="callout-inner">
+<h3 class="callout-title">SSH（上級編）</h3>
 <div class="callout-content">
 <p>このレッスンの補足エピソードでは、SSHと鍵ペアについてさらに深く詳しく説明しています。</p>
 </div>
