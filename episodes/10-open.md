@@ -138,23 +138,17 @@ approach for your current project and explain why.
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## How to Track Large Data or Image Files using Git?
+## 大きなデータや画像ファイルをGitで管理する方法
 
-Large data or image files such as `.md5` or `.psd` file types can be tracked within
-a github repository using the [Git Large File Storage](https://git-lfs.github.com)
-open source extension tool.  This tool automatically uploads large file contents to
-a remote server and replaces the file with a text pointer within the github repository.
+`.md5` や `.psd` のような大きなデータファイルや画像ファイルをGitHubリポジトリで管理するには、[Git Large File Storage](https://git-lfs.github.com) （Git LFS）というオープンソースの拡張ツールを使用できます。このツールは、大きなファイルの内容を自動的にリモートサーバーにアップロードし、GitHubリポジトリ内ではファイルを指し示すテキストポインターに置き換えます。
 
-Try downloading and installing the Git Large File Storage extension tool, then add
-tracking of a large file to your github repository.  Ask a colleague to clone your
-repository and describe what they see when they access that large file.  
-
+Git Large File Storage拡張ツールをダウンロードしてインストールし、GitHubリポジトリで大きなファイルの追跡を追加してみてください。次に、同僚にリポジトリをクローンしてもらい、その大きなファイルにアクセスした際に何が表示されるかを説明してください。
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- Open scientific work is more useful and more highly cited than closed.
+- オープンサイエンスの研究は、クローズドなものよりも有用であり、引用される頻度が高い。
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
