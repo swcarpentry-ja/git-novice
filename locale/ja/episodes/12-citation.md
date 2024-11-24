@@ -1,26 +1,23 @@
 ---
-title: Citation
+title: 引用
 teaching: 2
 exercises: 0
 ---
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- Make your work easy to cite
+- 自分の作品を引用しやすくする方法を学ぶ
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- How can I make my work easier to cite?
+- 自分の作品をどのようにすれば引用しやすくできますか？
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-You may want to include a file called `CITATION` or `CITATION.txt`
-that describes how to reference your project;
-the one for Software
-Carpentry
-states:
+プロジェクトを参照する方法を記載した `CITATION` または `CITATION.txt` というファイルを含めると良いでしょう。  
+Software Carpentry の場合、次のように記載されています：
 
 ```source
 To reference Software Carpentry in publications, please cite:
@@ -38,8 +35,8 @@ Greg Wilson: "Software Carpentry: Lessons Learned". F1000Research,
 }
 ```
 
-More detailed advice, and other ways to make your code citable can be found
-[at the Software Sustainability Institute blog](https://www.software.ac.uk/publication/how-cite-and-describe-software) and in:
+さらに詳しいアドバイスや、コードを引用可能にする他の方法については、  
+[Software Sustainability Institute のブログ](https://www.software.ac.uk/publication/how-cite-and-describe-software) や以下の文献に記載されています：
 
 ```source
 Smith AM, Katz DS, Niemeyer KE, FORCE11 Software Citation Working Group. (2016) Software citation
@@ -47,13 +44,11 @@ principles. [PeerJ Computer Science 2:e86](https://peerj.com/articles/cs-86/)
 https://doi.org/10.7717/peerj-cs.8
 ```
 
-There is also an [`@software{...`](https://www.google.com/search?q=git+citation+%22%40software%7B%22)
-[BibTeX](https://www.ctan.org/pkg/bibtex) entry type in case
-no "umbrella" citation like a paper or book exists for the project you want to
-make citable.
+また、対象のプロジェクトに引用すべき論文や書籍が存在しない場合は、[`@software{...`](https://www.google.com/search?q=git+citation+%22%40software%7B%22)
+[BibTeX](https://www.ctan.org/pkg/bibtex) エントリタイプを使用することも可能です。
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- Add a CITATION file to a repository to explain how you want your work cited.
+- リポジトリに CITATION ファイルを追加して、自分の作品をどのように引用してほしいかを説明する。
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::

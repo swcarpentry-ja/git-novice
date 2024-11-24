@@ -75,31 +75,25 @@ Click on the 'SSH' link to change the [protocol](../learners/reference.md#protoc
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
-## HTTPS vs. SSH
+## HTTPS 対 SSH
 
-We use SSH here because, while it requires some additional configuration, it is a
-security protocol widely used by many applications.  The steps below describe SSH at a
-minimum level for GitHub.
+ここではSSHを使用します。SSHは追加の設定が必要ですが、多くのアプリケーションで広く使用されているセキュリティプロトコルです。以下の手順は、GitHubでのSSHの基本的な使い方について説明しています。
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-![](fig/github-change-repo-string.png){alt='A screenshot showing that clicking on "SSH" will make GitHub provide the SSH URL for a repository instead of the HTTPS URL'}
+![](fig/github-change-repo-string.png){alt='「SSH」をクリックすると、GitHubがリポジトリのHTTPS URLの代わりにSSH URLを提供する様子'}
 
-Copy that URL from the browser, go into the local `planets` repository, and run
-this command:
+そのURLをブラウザからコピーし、ローカルの `planets` リポジトリに移動して、次のコマンドを実行します：
 
 ```bash
 $ git remote add origin git@github.com:vlad/planets.git
 ```
 
-Make sure to use the URL for your repository rather than Vlad's: the only
-difference should be your username instead of `vlad`.
+自分のリポジトリのURLを使用することを忘れないでください。`vlad` の代わりに自分のユーザー名に変更するだけです。
 
-`origin` is a local name used to refer to the remote repository. It could be called
-anything, but `origin` is a convention that is often used by default in git
-and GitHub, so it's helpful to stick with this unless there's a reason not to.
+`origin` はリモートリポジトリを指すローカル名です。他の名前を付けても構いませんが、`origin` はGitやGitHubでデフォルトとしてよく使われる慣例的な名前です。特別な理由がない限り、この名前を使用するのが便利です。
 
-We can check that the command has worked by running `git remote -v`:
+コマンドが正しく動作したかどうかを確認するには、次のコマンドを実行します：
 
 ```bash
 $ git remote -v
@@ -110,67 +104,64 @@ origin   git@github.com:vlad/planets.git (fetch)
 origin   git@github.com:vlad/planets.git (push)
 ```
 
-We'll discuss remotes in more detail in the next episode, while
-talking about how they might be used for collaboration.
+リモートについては、次のエピソードでコラボレーションでの活用方法を説明しながら詳しく議論します。
 
-## 3\. SSH Background and Setup
+## 3\. SSH の背景と設定
 
-Before Dracula can connect to a remote repository, he needs to set up a way for his computer to authenticate with GitHub so it knows it's him trying to connect to his remote repository.
+ドラキュラがリモートリポジトリに接続するには、GitHubが彼のコンピュータで認証されていることを確認する方法を設定する必要があります。
+これから説明する方法は、コマンドラインでアクセスを認証するために多くのサービスで一般的に使用されている方法です。この方法は「Secure Shell Protocol（SSH）」と呼ばれます。
+SSHは暗号化ネットワークプロトコルで、安全でないネットワークを使用しても、コンピュータ間で安全な通信を可能にします。
 
-We are going to set up the method that is commonly used by many different services to authenticate access on the command line.  This method is called Secure Shell Protocol (SSH).  SSH is a cryptographic network protocol that allows secure communication between computers using an otherwise insecure network.
+SSHは「鍵ペア」というものを使用します。鍵ペアは、アクセスを検証するために一緒に動作する2つの鍵です。1つは「公開鍵」と呼ばれる公開される鍵で、もう1つは秘密にされる「秘密鍵」です。それぞれの名前の通りの役割を持っています。
 
-SSH uses what is called a key pair. This is two keys that work together to validate access. One key is publicly known and called the public key, and the other key called the private key is kept private. Very descriptive names.
+公開鍵を南京錠、秘密鍵をその南京錠を開ける鍵と考えることができます。公開鍵をGitHubのような安全な通信を必要とする場所に提供します。これにより、「この南京錠（公開鍵）を使って私のアカウントへの通信をロックしてください。私の秘密鍵を持っているコンピュータだけが通信を解除し、Gitコマンドを私のGitHubアカウントとして送信できます」と指示することができます。
 
-You can think of the public key as a padlock, and only you have the key (the private key) to open it. You use the public key where you want a secure method of communication, such as your GitHub account.  You give this padlock, or public key, to GitHub and say "lock the communications to my account with this so that only computers that have my private key can unlock communications and send git commands as my GitHub account."
-
-What we will do now is the minimum required to set up the SSH keys and add the public key to a GitHub account.
-
-:::::::::::::::::::::::::::::::::::::::::  callout
-
-## Advanced SSH
-
-A supplemental episode in this lesson discusses SSH and key pairs in more depth and detail.
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-The first thing we are going to do is check if this has already been done on the computer you're on.  Because generally speaking, this setup only needs to happen once and then you can forget about it.
+ここでは、SSH鍵を設定し、公開鍵をGitHubアカウントに追加するために必要な最小限の手順を説明します。
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
-## Keeping your keys secure
+## 高度なSSH
 
-You shouldn't really forget about your SSH keys, since they keep your account secure. It's good
-practice to audit your secure shell keys every so often. Especially if you are using multiple
-computers to access your account.
+このレッスンの補足エピソードでは、SSHと鍵ペアについてさらに深く詳しく説明しています。
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-We will run the list command to check what key pairs already exist on your computer.
+まず最初に、この作業が現在使用しているコンピュータで既に行われているかどうかを確認します。一般的に、この設定は一度行えば、それ以降は再設定する必要はありません。
+
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## 鍵を安全に保つ
+
+SSH鍵はアカウントのセキュリティを守るためのものなので、本当に「忘れる」べきではありません。定期的にSSH鍵を監査するのは良い習慣です。特に複数のコンピュータからアカウントにアクセスしている場合は注意が必要です。
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+以下のリストコマンドを実行して、既に存在する鍵ペアを確認します。
 
 ```bash
 ls -al ~/.ssh
 ```
 
-Your output is going to look a little different depending on whether or not SSH has ever been set up on the computer you are using.
+使用しているコンピュータでSSHが設定されているかどうかによって、出力は異なります。
 
-Dracula has not set up SSH on his computer, so his output is
+ドラキュラのコンピュータではSSHがまだ設定されていないため、出力は次のようになります：
 
 ```output
 ls: cannot access '/c/Users/Vlad Dracula/.ssh': No such file or directory
 ```
 
-If SSH has been set up on the computer you're using, the public and private key pairs will be listed. The file names are either `id_ed25519`/`id_ed25519.pub` or `id_rsa`/`id_rsa.pub` depending on how the key pairs were set up.\
-Since they don't exist on Dracula's computer, he uses this command to create them.
+もしSSHが設定済みの場合、公開鍵と秘密鍵がリストされます。鍵ペアは設定方法に応じて、`id_ed25519`/`id_ed25519.pub` または `id_rsa`/`id_rsa.pub` という名前になっています。\
+ドラキュラのコンピュータには鍵が存在しないため、次のコマンドを使って鍵を作成します。
 
-### 3\.1 Create an SSH key pair
+### 3\.1 SSH鍵ペアを作成する
 
-To create an SSH key pair Vlad uses this command, where the `-t` option specifies which type of algorithm to use and `-C` attaches a comment to the key (here, Vlad's email):
+SSH鍵ペアを作成するには、以下のコマンドを使用します。`-t` オプションでアルゴリズムの種類を指定し、`-C` で鍵にコメントを追加します（ここではドラキュラのメールアドレスを使用しています）。
 
 ```bash
 $ ssh-keygen -t ed25519 -C "vlad@tran.sylvan.ia"
 ```
 
-If you are using a legacy system that doesn't support the Ed25519 algorithm, use:
+もし古いシステムでEd25519アルゴリズムがサポートされていない場合は、次のコマンドを使用してください：
 `$ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"`
 
 ```output
@@ -178,23 +169,22 @@ Generating public/private ed25519 key pair.
 Enter file in which to save the key (/c/Users/Vlad Dracula/.ssh/id_ed25519):
 ```
 
-We want to use the default file, so just press <kbd>Enter</kbd>.
+デフォルトのファイルを使用するので、<kbd>Enter</kbd> を押してください。
 
 ```output
 Created directory '/c/Users/Vlad Dracula/.ssh'.
 Enter passphrase (empty for no passphrase):
 ```
 
-Now, it is prompting Dracula for a passphrase.  Since he is using his lab's laptop that other people sometimes have access to, he wants to create a passphrase.
-Be sure to use something memorable or save your passphrase somewhere, as there is no "reset my password" option.
-Note that, when typing a passphrase on a terminal, there won't be any visual feedback of your typing.
-This is normal: your passphrase will be recorded even if you see nothing changing on your screen.
+ここでパスフレーズの入力を求められます。他の人がアクセスする可能性のある研究室のラップトップを使用しているため、ドラキュラはパスフレーズを作成します。
+覚えやすいものを使うか、どこかに保存してください。パスワードリセットオプションはありません。
+ターミナルでパスフレーズを入力しても、入力内容が画面に表示されないのは正常です。
 
 ```output
 Enter same passphrase again:
 ```
 
-After entering the same passphrase a second time, we receive the confirmation
+2回目のパスフレーズ入力後、次の確認メッセージが表示されます：
 
 ```output
 Your identification has been saved in /c/Users/Vlad Dracula/.ssh/id_ed25519
@@ -215,10 +205,10 @@ The key's randomart image is:
 +----[SHA256]-----+
 ```
 
-The "identification" is actually the private key. You should never share it.  The public key is appropriately named.  The "key fingerprint"
-is a shorter version of a public key.
+「identification（識別情報）」とは秘密鍵を指します。これは絶対に共有しないでください。公開鍵はその名の通り公開して問題ありません。
+「key fingerprint（鍵のフィンガープリント）」は、公開鍵の短縮版です。
 
-Now that we have generated the SSH keys, we will find the SSH files when we check.
+SSH鍵を生成したので、再度確認してみましょう。
 
 ```bash
 ls -al ~/.ssh
@@ -231,9 +221,9 @@ drwxr-xr-x 1 Vlad Dracula 197121   0 Jul 16 14:48 ../
 -rw-r--r-- 1 Vlad Dracula 197121 106 Jul 16 14:48 id_ed25519.pub
 ```
 
-### 3\.2 Copy the public key to GitHub
+### 3\.2 公開鍵をGitHubにコピーする
 
-Now we have a SSH key pair and we can run this command to check if GitHub can read our authentication.
+SSH鍵ペアができたので、GitHubが認証情報を読み取れるか確認します。
 
 ```bash
 ssh -T git@github.com
@@ -245,13 +235,15 @@ RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
 This key is not known by any other names
 Are you sure you want to continue connecting (yes/no/[fingerprint])? y
 Please type 'yes', 'no' or the fingerprint: yes
-Warning: Permanently added 'github.com' (RSA) to the list of known hosts.
+Warning: Permanently added 'github.com' (RSA) to the list of known
+
+ hosts.
 git@github.com: Permission denied (publickey).
 ```
 
-Right, we forgot that we need to give GitHub our public key!
+ここで公開鍵をGitHubに渡すのを忘れていることに気付きます！
 
-First, we need to copy the public key.  Be sure to include the `.pub` at the end, otherwise you're looking at the private key.
+まず、公開鍵をコピーします。`.pub` を含めて指定してください。そうしないと秘密鍵を見てしまいます。
 
 ```bash
 cat ~/.ssh/id_ed25519.pub
@@ -261,12 +253,10 @@ cat ~/.ssh/id_ed25519.pub
 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDmRA3d51X0uu9wXek559gfn6UFNF69yZjChyBIU2qKI vlad@tran.sylvan.ia
 ```
 
-Now, going to GitHub.com, click on your profile icon in the top right corner to get the drop-down menu.  Click "Settings," then on the
-settings page, click "SSH and GPG keys," on the left side "Account settings" menu.  Click the "New SSH key" button on the right side. Now,
-you can add the title (Dracula uses the title "Vlad's Lab Laptop" so he can remember where the original key pair
-files are located), paste your SSH key into the field, and click the "Add SSH key" to complete the setup.
+次にGitHub.comにアクセスし、右上のプロフィールアイコンをクリックしてドロップダウンメニューを開きます。「Settings（設定）」をクリックし、設定ページの左側メニューから「SSH and GPG keys」を選択します。右側の「New SSH key」ボタンをクリックします。
+ここで、タイトルを入力し（ドラキュラは「Vlad's Lab Laptop」と名付け、元の鍵ペアファイルの場所を覚えられるようにしました）、SSH鍵をフィールドに貼り付け、「Add SSH key」をクリックして設定を完了します。
 
-Now that we've set that up, let's check our authentication again from the command line.
+設定が完了したので、再度認証を確認してみましょう。
 
 ```bash
 $ ssh -T git@github.com
@@ -276,19 +266,17 @@ $ ssh -T git@github.com
 Hi Vlad! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
-Good! This output confirms that the SSH key works as intended. We are now ready to push our work to the remote repository.
+よし！この出力はSSH鍵が正常に機能していることを確認しています。これでリモートリポジトリに作業をプッシュする準備が整いました。
 
-## 4\. Push local changes to a remote
+## 4\. ローカルの変更をリモートにプッシュする
 
-Now that authentication is setup, we can return to the remote.  This command will push the changes from
-our local repository to the repository on GitHub:
+認証設定が完了したので、リモートリポジトリに戻りましょう。このコマンドを使用して、ローカルリポジトリの変更をGitHubのリポジトリにプッシュします：
 
 ```bash
 $ git push origin main
 ```
 
-Since Dracula set up a passphrase, it will prompt him for it.  If you completed advanced settings for your authentication, it
-will not prompt for a passphrase.
+ドラキュラがパスフレーズを設定している場合、入力を求められます。高度な認証設定を完了している場合は、パスフレーズを求められることはありません。
 
 ```output
 Enumerating objects: 16, done.
@@ -306,17 +294,14 @@ To https://github.com/vlad/planets.git
 
 ## プロキシ
 
-If the network you are connected to uses a proxy, there is a chance that your
-last command failed with "Could not resolve hostname" as the error message. To
-solve this issue, you need to tell Git about the proxy:
+もし接続しているネットワークがプロキシを使用している場合、最後のコマンドが「ホスト名を解決できません」というエラーメッセージで失敗することがあります。この問題を解決するには、Gitにプロキシ情報を伝える必要があります：
 
 ```bash
 $ git config --global http.proxy http://user:password@proxy.url
 $ git config --global https.proxy https://user:password@proxy.url
 ```
 
-When you connect to another network that doesn't use a proxy, you will need to
-tell Git to disable the proxy using:
+プロキシを使用していないネットワークに接続した際には、次のコマンドを使ってプロキシを無効化する必要があります：
 
 ```bash
 $ git config --global --unset http.proxy
@@ -327,45 +312,35 @@ $ git config --global --unset https.proxy
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
-## Password Managers
+## パスワードマネージャー
 
-If your operating system has a password manager configured, `git push` will
-try to use it when it needs your username and password.  For example, this
-is the default behavior for Git Bash on Windows. If you want to type your
-username and password at the terminal instead of using a password manager,
-type:
+オペレーティングシステムにパスワードマネージャーが設定されている場合、`git push` はユーザー名とパスワードが必要な際にそれを使用しようとします。たとえば、WindowsのGit Bashではこれがデフォルトの動作です。ターミナルでユーザー名とパスワードを直接入力したい場合は、次のコマンドを実行してください：
 
 ```bash
 $ unset SSH_ASKPASS
 ```
 
-in the terminal, before you run `git push`.  Despite the name, Git uses
-, so
-you may want to unset `SSH_ASKPASS` whether you are using Git via SSH or
-https.
-
-You may also want to add `unset SSH_ASKPASS` at the end of your `~/.bashrc`
-to make Git default to using the terminal for usernames and passwords.
+この設定により、Gitがターミナルで直接ユーザー名とパスワードを使用するようになります。また、`~/.bashrc` の最後に `unset SSH_ASKPASS` を追加すると、デフォルトでターミナルでの入力が使用されるようになります。
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-Our local and remote repositories are now in this state:
+ローカルリポジトリとリモートリポジトリの状態は次のようになります：
 
-![](fig/github-repo-after-first-push.svg){alt='A diagram showing how "git push origin" will push changes from the local repository to the remote, making the remote repository an exact copy of the local repository.'}
+![](fig/github-repo-after-first-push.svg){alt='「git push origin」でローカルリポジトリの変更をリモートにプッシュし、リモートリポジトリがローカルリポジトリの正確なコピーになる様子'}
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
-## The '-u' Flag
+## `-u` フラグ
 
-You may see a `-u` option used with `git push` in some documentation.  This
-option is synonymous with the `--set-upstream-to` option for the `git branch`
-command, and is used to associate the current branch with a remote branch so
-that the `git pull` command can be used without any arguments. To do this,
-simply use `git push -u origin main` once the remote has been set up.
+一部のドキュメントでは、`git push` コマンドで `-u` オプションを使用しているのを見かけることがあります。このオプションは `git branch` コマンドの `--set-upstream-to` オプションと同義で、現在のブランチをリモートブランチに関連付けるために使用されます。これにより、引数なしで `git pull` コマンドを使用できるようになります。リモート設定後、一度だけ次のコマンドを使用してください：
+
+```bash
+$ git push -u origin main
+```
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-We can pull changes from the remote repository to the local one as well:
+リモートリポジトリの変更をローカルリポジトリにプルすることもできます：
 
 ```bash
 $ git pull origin main
@@ -377,39 +352,30 @@ From https://github.com/vlad/planets
 Already up-to-date.
 ```
 
-Pulling has no effect in this case because the two repositories are already
-synchronized.  If someone else had pushed some changes to the repository on
-GitHub, though, this command would download them to our local repository.
+この場合、両方のリポジトリが既に同期されているため、プルしても影響はありません。しかし、他の誰かがGitHubのリポジトリに変更をプッシュしていた場合、このコマンドはその変更をローカルリポジトリにダウンロードします。
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
 ## GitHub GUI
 
-Browse to your `planets` repository on GitHub.
-Underneath the Code button, find and click on the text that says "XX commits" (where "XX" is some number).
-Hover over, and click on, the three buttons to the right of each commit.
-What information can you gather/explore from these buttons?
-How would you get that same information in the shell?
+GitHub上の `planets` リポジトリをブラウズしてください。
+「Code」ボタンの下で「XX commits」（XXは数値）というテキストを見つけてクリックしてください。
+各コミットの右側にある3つのボタンにカーソルを合わせたりクリックしてください。
+これらのボタンからどのような情報を収集/探索できますか？
+シェルで同じ情報を取得するにはどうすればよいですか？
 
 :::::::::::::::  solution
 
 ## 解答
 
-The left-most button (with the picture of a clipboard) copies the full identifier of the commit
-to the clipboard. In the shell, `git log` will show you the full commit identifier for each
-commit.
+最も左のボタン（クリップボードの画像）は、コミットの完全な識別子をクリップボードにコピーします。
+シェルでは、`git log` を使用すると各コミットの完全な識別子を確認できます。
 
-When you click on the middle button, you'll see all of the changes that were made in that
-particular commit. Green shaded lines indicate additions and red ones removals. In the shell we
-can do the same thing with `git diff`. In particular, `git diff ID1..ID2` where ID1 and
-ID2 are commit identifiers (e.g. `git diff a3bf1e5..041e637`) will show the differences
-between those two commits.
+中央のボタンをクリックすると、その特定のコミットで行われたすべての変更が表示されます。緑色のラインは追加を、赤色のラインは削除を示します。
+シェルでは、`git diff` コマンドを使用して同じ情報を確認できます。特に、`git diff ID1..ID2`（例：`git diff a3bf1e5..041e637`）を使用すると、2つのコミット間の差分を表示できます。
 
-The right-most button lets you view all of the files in the repository at the time of that
-commit. To do this in the shell, we'd need to checkout the repository at that particular time.
-We can do this with `git checkout ID` where ID is the identifier of the commit we want to
-look at. If we do this, we need to remember to put the repository back to the right state
-afterwards!
+最も右のボタンは、そのコミット時点でのリポジトリ内のすべてのファイルを表示します。
+シェルで同じ操作を行うには、その特定の時点でリポジトリをチェックアウトする必要があります。`git checkout ID`（IDは見たいコミットの識別子）を使用します。その後、リポジトリを元の状態に戻すことを忘れないようにしてください！
 
 :::::::::::::::::::::::::
 
@@ -417,33 +383,24 @@ afterwards!
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
-## Uploading files directly in GitHub browser
+## GitHubブラウザでの直接アップロード
 
-Github also allows you to skip the command line and upload files directly to
-your repository without having to leave the browser. There are two options.
-First you can click the "Upload files" button in the toolbar at the top of the
-file tree. Or, you can drag and drop files from your desktop onto the file
-tree. You can read more about this [on this GitHub page](https://help.github.com/articles/adding-a-file-to-a-repository/).
+GitHubでは、コマンドラインをスキップしてブラウザから直接リポジトリにファイルをアップロードすることもできます。2つの方法があります。
+1つ目は、ファイルツリーの上部ツールバーにある「Upload files」ボタンをクリックすることです。2つ目は、デスクトップからファイルツリーにファイルをドラッグ＆ドロップすることです。詳細は[GitHubのこのページ](https://help.github.com/articles/adding-a-file-to-a-repository/)で確認できます。
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## GitHub Timestamp
+## GitHubのタイムスタンプ
 
-Create a remote repository on GitHub. Push the contents of your local
-repository to the remote. Make changes to your local repository and push these
-changes. Go to the repo you just created on GitHub and check the
-[timestamps](../learners/reference.md#timestamp) of the files. How does GitHub
-record times, and why?
+GitHubでリモートリポジトリを作成します。ローカルリポジトリの内容をリモートにプッシュします。ローカルリポジトリを変更して、その変更をプッシュします。作成したGitHubリポジトリに移動して、ファイルの[タイムスタンプ](../learners/reference.md#timestamp)を確認してください。GitHubはどのように時刻を記録しており、その理由は何ですか？
 
 :::::::::::::::  solution
 
 ## 解答
 
-GitHub displays timestamps in a human readable relative format (i.e. "22 hours ago" or "three
-weeks ago"). However, if you hover over the timestamp, you can see the exact time at which the
-last change to the file occurred.
+GitHubはタイムスタンプを人間が読みやすい相対形式（例："22 hours ago" や "three weeks ago"）で表示します。ただし、タイムスタンプにカーソルを合わせると、ファイルの最後の変更が行われた正確な時刻を確認できます。
 
 :::::::::::::::::::::::::
 
@@ -451,18 +408,17 @@ last change to the file occurred.
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Push vs. Commit
+## プッシュとコミットの違い
 
-In this episode, we introduced the "git push" command.
-How is "git push" different from "git commit"?
+このエピソードでは「git push」コマンドを紹介しました。
+「git push」は「git commit」とどのように異なりますか？
 
 :::::::::::::::  solution
 
 ## 解答
 
-When we push changes, we're interacting with a remote repository to update it with the changes
-we've made locally (often this corresponds to sharing the changes we've made with others).
-Commit only updates your local repository.
+プッシュではリモートリポジトリに変更を送信します。これにより、リモートリポジトリを更新し、しばしば他の人と変更を共有します。
+コミットはローカルリポジトリのみを更新します。
 
 :::::::::::::::::::::::::
 
@@ -470,20 +426,17 @@ Commit only updates your local repository.
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## GitHub License and README files
+## GitHubのライセンスとREADMEファイル
 
-In this episode we learned about creating a remote repository on GitHub, but when you initialized
-your GitHub repo, you didn't add a README.md or a license file. If you had, what do you think
-would have happened when you tried to link your local and remote repositories?
+このエピソードではGitHub上でリモートリポジトリを作成する方法を学びましたが、GitHubリポジトリを初期化する際にREADME.mdやライセンスファイルを追加しませんでした。もし追加していた場合、ローカルリポジトリ
+
+とリモートリポジトリをリンクしようとした際に何が起こったでしょうか？
 
 :::::::::::::::  solution
 
 ## 解答
 
-In this case, we'd see a merge conflict due to unrelated histories. When GitHub creates a
-README.md file, it performs a commit in the remote repository. When you try to pull the remote
-repository to your local repository, Git detects that they have histories that do not share a
-common origin and refuses to merge.
+この場合、無関係な履歴のためにマージコンフリクトが発生します。GitHubがREADME.mdファイルを作成すると、リモートリポジトリでコミットが行われます。リモートリポジトリをローカルリポジトリにプルしようとすると、Gitは共通の起源を持たない履歴を検出し、マージを拒否します。
 
 ```bash
 $ git pull origin main
@@ -501,9 +454,7 @@ From https://github.com/vlad/planets
 fatal: refusing to merge unrelated histories
 ```
 
-You can force git to merge the two repositories with the option `--allow-unrelated-histories`.
-Be careful when you use this option and carefully examine the contents of local and remote
-repositories before merging.
+`--allow-unrelated-histories` オプションを使用して、2つのリポジトリを強制的にマージすることができます。このオプションを使用する際は注意が必要で、マージする前にローカルリポジトリとリモートリポジトリの内容を慎重に確認してください。
 
 ```bash
 $ git pull --allow-unrelated-histories origin main
@@ -524,9 +475,9 @@ create mode 100644 README.md
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- A local Git repository can be connected to one or more remote repositories.
-- Use the SSH protocol to connect to remote repositories.
-- `git push` copies changes from a local repository to a remote repository.
-- `git pull` copies changes from a remote repository to a local repository.
+- ローカルGitリポジトリは1つ以上のリモートリポジトリに接続できます。
+- リモートリポジトリへの接続にはSSHプロトコルを使用します。
+- `git push` はローカルリポジトリからリモートリポジトリに変更をコピーします。
+- `git pull` はリモートリポジトリからローカルリポジトリに変更をコピーします。
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::

@@ -1,5 +1,5 @@
 ---
-title: Hosting
+title: ホスティング
 teaching: 10
 exercises: 0
 ---
@@ -12,83 +12,70 @@ exercises: 0
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- バージョン管理リポジトリはどこでホストすればよいでしょうか?
+- バージョン管理リポジトリはどこでホストすればよいでしょうか？
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-After [choosing a license](11-licensing.md),
-another big question for groups that want to open up their work is where to
-host their code and data.  1 つのオプションは、研究室、学部、または大学がサーバーを提供し、アカウントやバックアップなどを管理することです。  これの主な利点は、誰が何を所有しているかを明確にすることです。
-それは、題材が機密性の高いもの (すなわち、ヒトを対象とする実験に関するもの、または特許出願に使用される可能性のあるもの) である場合に特に重要です。  主な欠点は、サービスの提供コストとその存続期間です。データ収集に 10 年を費やした科学者は、10 年後もデータが利用できることを確認したいと考えますが、それは学術インフラに資金提供されるほとんど助成金の存続期間をはるかに超えています。
+[ライセンスを選択した後](11-licensing.md)、作業を公開したいグループにとってのもう1つの大きな課題は、コードやデータをどこでホストするかです。  
+1つのオプションは、研究室、学部、または大学がサーバーを提供し、アカウントやバックアップなどを管理することです。  
+この方法の主な利点は、誰が何を所有しているかが明確になることです。  
+特に、ヒトを対象とする実験に関するデータや特許出願に使用される可能性がある機密性の高い題材の場合に重要です。  
+一方、主な欠点は、サービスの提供コストとその存続期間です。  
+10年を費やしてデータを収集した科学者は、さらに10年後もそのデータが利用可能であることを確認したいと考えますが、それは学術インフラに資金提供されるほとんどの助成金の存続期間を超えています。
 
-もう 1 つのオプションは、ドメインを購入し、それをホストするためにインターネット サービス プロバイダー (ISP) に料金を支払うことです。  これにより、個人またはグループによる制御が強化され、ある機関から別の機関に移動するときに発生する可能性のある問題を回避できます。
-ただし、上記のオプションまたは下記のオプションよりもセットアップに多くの時間と労力が必要です。
+もう1つのオプションは、自分でドメインを購入し、それをホストするためにインターネットサービスプロバイダー（ISP）に料金を支払うことです。  
+これにより、個人またはグループによる制御が強化され、ある機関から別の機関に移動するときに発生する可能性のある問題を回避できます。ただし、この方法は上記のオプションや以下のオプションよりもセットアップに多くの時間と労力を必要とします。
 
-3 番目のオプションは、
-[GitHub](https://github.com)、 [GitLab](https://gitlab.com)、または
-[BitBucket](https://bitbucket.org) のようなパブリック ホスティング サービスを使用することです。
-これらの各サービスは、コードリポジトリを作成、閲覧、編集できる Web インターフェイスを提供します。  これらのサービスは、イシュートラッキング、Wiki ページ、メール通知、コードレビューなどのコミュニケーションやプロジェクト管理ツールも提供します。  These services benefit from economies of
-scale and network effects: it's easier to run one large service well than to run
-many smaller services to the same standard.  It's also easier for people to
-collaborate.  Using a popular service can help connect your project with
-communities already using the same service.
+3つ目のオプションは、[GitHub](https://github.com)、[GitLab](https://gitlab.com)、または[BitBucket](https://bitbucket.org) のようなパブリックホスティングサービスを利用することです。  
+これらの各サービスは、コードリポジトリを作成、閲覧、編集できるWebインターフェイスを提供します。  
+また、イシュートラッキング、Wikiページ、メール通知、コードレビューなど、コミュニケーションやプロジェクト管理ツールも備えています。  
+これらのサービスは規模の経済とネットワーク効果の恩恵を受けています。1つの大規模なサービスを適切に運営する方が、多くの小規模なサービスを同じ基準で運営するよりも簡単です。また、コラボレーションが容易になります。  
+人気のあるサービスを使用することで、既にそのサービスを使用しているコミュニティとプロジェクトをつなげることができます。
 
-As an example, Software Carpentry [is on GitHub](https://github.com/swcarpentry/) where you can find the source for this
-page. Anyone with a GitHub account can suggest changes to this text.
+たとえば、Software Carpentry は [GitHub 上にあります](https://github.com/swcarpentry/)。  
+このページのソースコードもここにあります。GitHub アカウントを持っていれば、誰でもこのテキストに変更を提案することができます。
 
-GitHub repositories can also be assigned DOIs, by connecting its releases to
-Zenodo. For example,
-[`10.5281/zenodo.7908089`](https://zenodo.org/record/7908089) is the DOI that has
-been "minted" for this introduction to Git.
+GitHub リポジトリは、Zenodoと連携してリリースに DOI を割り当てることも可能です。  
+たとえば、[`10.5281/zenodo.7908089`](https://zenodo.org/record/7908089) は、このGit入門書に「ミントされた」DOIです。
 
-Using large, well-established services can also help you quickly take advantage
-of powerful tools.  One such tool, continuous integration (CI), can
-automatically run software builds and tests whenever code is committed or pull
-requests are submitted.  Direct integration of CI with an online hosting service
-means this information is present in any pull request, and helps maintain code
-integrity and quality standards.  While CI is still available in self-hosted
-situations, there is much less setup and maintenance involved with using an
-online service.  Furthermore, such tools are often provided free of charge to
-open source projects, and are also available for private repositories for a fee.
+大規模で確立されたサービスを利用すると、強力なツールを迅速に利用できる場合もあります。  
+その1つが継続的インテグレーション（CI）です。CIは、コードがコミットされたりプルリクエストが送信されたりするたびにソフトウェアのビルドやテストを自動で実行します。  
+オンラインホスティングサービスとの直接統合により、この情報がすべてのプルリクエストに表示され、コードの整合性と品質基準の維持に役立ちます。  
+CIは自分でホストする場合でも利用可能ですが、オンラインサービスを使用する場合よりも設定や保守の手間が大きくなります。  
+さらに、こうしたツールはオープンソースプロジェクトには無料で提供されることが多く、プライベートリポジトリの場合は有料で利用可能です。
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
-## Institutional Barriers
+## 組織的な制約
 
-Sharing is the ideal for science,
-but many institutions place restrictions on sharing,
-for example to protect potentially patentable intellectual property.
-If you encounter such restrictions,
-it can be productive to inquire about the underlying motivations and
-either to request an exception for a specific project or domain,
-or to push more broadly for institutional reform to support more open science.
+科学において共有は理想ですが、多くの組織が共有に制限を設けています。  
+たとえば、特許出願が可能な知的財産を保護するためです。  
+こうした制約に直面した場合、その根本的な動機について問い合わせたり、特定のプロジェクトや分野に例外を求めたり、より広範囲にわたってオープンサイエンスを支援するための制度改革を推進することが有益な場合があります。
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Can My Work Be Public?
+## 自分の作品を公開できますか？
 
-Find out whether you are allowed to host your work openly in a public repository.
-Can you do this unilaterally,
-or do you need permission from someone in your institution?
-If so, who?
+自分の作品を公開リポジトリでオープンにホストできるかどうかを確認してください。  
+これを単独で行うことができますか、それとも所属機関の誰かの許可が必要ですか？  
+もし許可が必要なら、それは誰ですか？
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Where Can I Share My Work?
+## 自分の作品をどこで共有できますか？
 
-Does your institution have a repository or repositories that you can
-use to share your papers, data and software? How do institutional repositories
-differ from services like [arXiV](https://arxiv.org/), [figshare](https://figshare.com/), [GitHub](https://github.com/) or [GitLab](https://about.gitlab.com/)?
+あなたの所属機関には、論文、データ、ソフトウェアを共有するためのリポジトリがありますか？  
+所属機関のリポジトリは、[arXiV](https://arxiv.org/)、[figshare](https://figshare.com/)、[GitHub](https://github.com/)、または[GitLab](https://about.gitlab.com/)のようなサービスとどう異なりますか？
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- Projects can be hosted on university servers, on personal domains, or on a public hosting service.
-- Rules regarding intellectual property and storage of sensitive information apply no matter where code and data are hosted.
+- プロジェクトは大学のサーバー、個人ドメイン、またはパブリックホスティングサービスでホストできます。
+- 知的財産や機密情報の保存に関する規則は、コードやデータがホストされる場所にかかわらず適用されます。
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::

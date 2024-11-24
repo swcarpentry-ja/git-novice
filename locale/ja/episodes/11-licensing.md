@@ -1,90 +1,62 @@
 ---
-title: Licensing
+title: ライセンス
 teaching: 5
 exercises: 0
 ---
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- Explain why adding licensing information to a repository is important.
-- Choose a proper license.
-- Explain differences in licensing and social expectations.
+- リポジトリにライセンス情報を追加する重要性を説明する。
+- 適切なライセンスを選ぶ。
+- ライセンスの違いと社会的期待を説明する。
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- What licensing information should I include with my work?
+- 自分の作品にはどのようなライセンス情報を含めるべきですか？
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-When a repository with source code, a manuscript or other creative
-works becomes public, it should include a file `LICENSE` or
-`LICENSE.txt` in the base directory of the repository that clearly
-states under which license the content is being made available. This
-is because creative works are automatically eligible for intellectual
-property (and thus copyright) protection. Reusing creative works
-without a license is dangerous, because the copyright holders could
-sue you for copyright infringement.
+ソースコード、原稿、またはその他の創作物を含むリポジトリが公開されるときは、リポジトリのルートディレクトリに `LICENSE` または `LICENSE.txt` というファイルを含め、コンテンツがどのライセンスの下で利用可能かを明確に記載する必要があります。  
+これは、創作物が自動的に知的財産権（したがって著作権）の保護対象となるためです。ライセンスがない状態で創作物を再利用することは危険であり、著作権侵害で訴えられる可能性があります。
 
-A license solves this problem by granting rights to others (the
-licensees) that they would otherwise not have. What rights are being
-granted under which conditions differs, often only slightly, from one
-license to another. In practice, a few licenses are by far the most
-popular, and [choosealicense.com](https://choosealicense.com/) will
-help you find a common license that suits your needs.  Important
-considerations include:
+ライセンスはこの問題を解決します。ライセンスは、他者（ライセンシー）に本来は持たない権利を付与します。  
+付与される権利とその条件はライセンスごとに異なりますが、その違いはわずかです。実際には、いくつかのライセンスが特に人気であり、[choosealicense.com](https://choosealicense.com/) を使えば、自分のニーズに合った一般的なライセンスを見つけることができます。重要な考慮事項には以下が含まれます：
 
-- Whether you want to address patent rights.
-- Whether you require people distributing derivative works to also
-  distribute their source code.
-- Whether the content you are licensing is source code.
-- Whether you want to license the code at all.
+- 特許権に関する取り扱いを明記したいか。
+- 派生物を配布する際にソースコードも配布することを要求するか。
+- ライセンスするコンテンツがソースコードかどうか。
+- コードをライセンスする意図があるかどうか。
 
-Choosing a license that is in common use makes life easier for
-contributors and users, because they are more likely to already be
-familiar with the license and don't have to wade through a bunch of
-jargon to decide if they're ok with it.  The Open Source
-Initiative and Free Software
-Foundation both
-maintain lists of licenses which are good choices.
+一般的に使用されているライセンスを選ぶことで、貢献者や利用者にとっての利便性が向上します。  
+これらのライセンスに精通している可能性が高く、複雑な用語を読む手間が省けるからです。  
+Open Source Initiative と Free Software Foundation の両方が、推奨されるライセンスのリストを維持しています。
 
-[This article][software-licensing] provides an excellent overview of
-licensing and licensing options from the perspective of scientists who
-also write code.
+[この記事][software-licensing] は、科学者がコードを書く際の視点から見たライセンスとそのオプションについての優れた概要を提供しています。
 
-At the end of the day what matters is that there is a clear statement
-as to what the license is. Also, the license is best chosen from the
-get-go, even if for a repository that is not public. Pushing off the
-decision only makes it more complicated later, because each time a new
-collaborator starts contributing, they, too, hold copyright and will
-thus need to be asked for approval once a license is chosen.
+最終的に重要なのは、ライセンスが明確に記載されていることです。また、リポジトリが公開されていなくても、ライセンスは早期に選定するのが最善です。決定を後回しにすると、後に複雑化する可能性があります。新しいコラボレーターが参加するたびに、その人も著作権を持つことになり、ライセンス選定時に承認を得る必要があるからです。
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Can I Use Open License?
+## オープンライセンスを適用できますか？
 
-Find out whether you are allowed to apply an open license to your software.
-Can you do this unilaterally,
-or do you need permission from someone in your institution?
-If so, who?
+自分のソフトウェアにオープンライセンスを適用できるかどうかを確認してください。
+単独でこれを行うことができますか、それとも所属機関の誰かの許可が必要ですか？  
+もし許可が必要なら、それは誰ですか？
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## What licenses have I already accepted?
+## 自分が既に受け入れているライセンスは？
 
-Many of the software tools we use on a daily basis (including in this workshop) are
-released as open-source software. Pick a project on GitHub from the list below, or
-one of your own choosing. Find its license (usually in a file called `LICENSE` or
-`COPYING`) and talk about how it restricts your use of the software. Is it one of
-the licenses discussed in this session? How is it different?
+私たちが日常的に使用している多くのソフトウェアツール（このワークショップでも使用されているものを含む）は、オープンソースソフトウェアとして公開されています。以下のリストからGitHubのプロジェクトを1つ選ぶか、自分で選んだプロジェクトを使ってください。そのライセンス（通常は `LICENSE` または `COPYING` というファイルに記載されています）を見つけ、そのライセンスがソフトウェアの使用方法をどのように制限しているかについて話し合ってください。そのライセンスはこのセッションで議論したものの1つですか？どう違いますか？
 
-- [Git](https://github.com/git/git), the source-code management tool
-- [CPython](https://github.com/python/cpython), the standard implementation of the Python language
-- [Jupyter](https://github.com/jupyter), the project behind the web-based Python notebooks we'll be using
-- [EtherPad](https://github.com/ether/etherpad-lite), a real-time collaborative editor
+- [Git](https://github.com/git/git): ソースコード管理ツール
+- [CPython](https://github.com/python/cpython): Python言語の標準実装
+- [Jupyter](https://github.com/jupyter): WebベースのPythonノートブックを提供するプロジェクト
+- [EtherPad](https://github.com/ether/etherpad-lite): リアルタイム共同編集エディタ
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -92,9 +64,9 @@ the licenses discussed in this session? How is it different?
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- The `LICENSE`, `LICENSE.md`, or `LICENSE.txt` file is often used in a repository to indicate how the contents of the repo may be used by others.
-- People who incorporate General Public License (GPL'd) software into their own software must make their software also open under the GPL license; most other open licenses do not require this.
-- The Creative Commons family of licenses allow people to mix and match requirements and restrictions on attribution, creation of derivative works, further sharing, and commercialization.
-- People who are not lawyers should not try to write licenses from scratch.
+- リポジトリの内容を他の人がどのように使用できるかを示すために、`LICENSE`、`LICENSE.md`、または `LICENSE.txt` ファイルがよく使用されます。
+- 一般公衆利用許諾契約書（GPL）ソフトウェアを自分のソフトウェアに組み込む場合、そのソフトウェアもGPLライセンスの下で公開する必要があります。他のほとんどのオープンライセンスにはこの要件がありません。
+- Creative Commons のライセンスファミリーでは、帰属、派生作品の作成、さらなる共有、商業利用に関する要件と制限を組み合わせることができます。
+- 法律の専門家でない人は、ライセンスを一から作成するべきではありません。
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::

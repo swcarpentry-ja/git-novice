@@ -1,79 +1,55 @@
 ---
-title: Git Cheatsheets for Quick Reference
+title: クイックリファレンス用Gitチートシート
 ---
 
-## Git Cheatsheets for Quick Reference
+## クイックリファレンス用Gitチートシート
 
-- Printable Git cheatsheets in several languages are [available here](https://github.github.com/training-kit/) ([English version](https://github.github.com/training-kit/downloads/github-git-cheat-sheet.pdf)). More material is available from the [GitHub training website](https://try.github.io/).
-- An [interactive one-page visualisation](https://ndpsoftware.com/git-cheatsheet.html)
-  about the relationships between workspace, staging area, local repository, upstream repository, and the commands associated with each (with explanations).
-- Both resources are also available in other languages (e.g. Spanish, French, and more).
-- "[Happy Git and GitHub for the useR](https://happygitwithr.com)" is an accessible, free online book by Jenny Bryan on how to setup and use Git and GitHub with specific references on the integration of Git with RStudio and working with Git in R.
-- [Open Scientific Code using Git and GitHub](https://open-source-for-researchers.github.io/open-source-workshop/) - A collection of explanations and short practical exercises to help researchers learn more about version control and open source software.
+- 様々な言語で印刷可能なGitチートシートが[こちら](https://github.github.com/training-kit/)から利用できます（[英語版はこちら](https://github.github.com/training-kit/downloads/github-git-cheat-sheet.pdf)）。さらに多くの資料が[GitHubトレーニングサイト](https://try.github.io/)にあります。
+- ワークスペース、ステージングエリア、ローカルリポジトリ、アップストリームリポジトリ間の関係と、それぞれに関連するコマンドを説明する[インタラクティブな一枚の可視化ツール](https://ndpsoftware.com/git-cheatsheet.html)も利用可能です。
+- これらのリソースは、スペイン語、フランス語など、他の言語でも利用可能です。
+- "[Happy Git and GitHub for the useR](https://happygitwithr.com)"は、Jenny Bryanによる無料でアクセス可能なオンラインブックで、GitとGitHubを設定して使用する方法を解説しています。特にRStudioとの統合やRでGitを使用する方法についての詳細が含まれています。
+- [GitとGitHubを使用したオープンサイエンス](https://open-source-for-researchers.github.io/open-source-workshop/) - バージョン管理やオープンソースソフトウェアについて研究者が学べるように、説明と短い実践課題をまとめたものです。
 
-## Glossary
+## 用語集
 
 [changeset]{#changeset}
-:   A group of changes to one or more files that are or will be added
-to a single [commit](#commit) in a [version control](#version-control)
-[repository](#repository).
+:   1つ以上のファイルに対する変更のグループ。これが[バージョン管理](#version-control)の[リポジトリ](#repository)に単一の[コミット](#commit)として追加される、またはされる予定です。
 
 [commit]{#commit}
-:   To record the current state of a set of files (a [changeset](#changeset))
-in a [version control](#version-control) [repository](#repository). As a noun,
-the result of committing, i.e. a recorded changeset in a repository.
-If a commit contains changes to multiple files,
-all of the changes are recorded together.
+:   一連のファイル（[変更セット](#changeset)）の現在の状態を[バージョン管理](#version-control)の[リポジトリ](#repository)に記録すること。名詞としては、リポジトリに記録された変更セット、つまりコミットを指します。コミットには複数のファイルの変更が含まれる場合があり、すべての変更が一緒に記録されます。
 
 [conflict]{#conflict}
-:   A change made by one user of a [version control system](#version-control)
-that is incompatible with changes made by other users.
-Helping users [resolve](#resolve) conflicts
-is one of version control's major tasks.
+:   [バージョン管理システム](#version-control)の他のユーザーによる変更と互換性がない変更。コンフリクトを[解決する](#resolve)ことは、バージョン管理の主要なタスクの1つです。
 
 [HTTP]{#http}
-:   The Hypertext Transfer [Protocol](#protocol) used for sharing web pages and other data
-on the World Wide Web.
+:   Webページやその他のデータをワールドワイドウェブ上で共有するために使用されるハイパーテキスト転送[プロトコル](#protocol)。
 
 [merge]{#merge}
-:   (a repository): To reconcile two sets of changes to a
-[repository](#repository).
+:   （リポジトリ）2つの変更セットを[リポジトリ](#repository)に統合すること。
 
 [protocol]{#protocol}
-:   A set of rules that define how one computer communicates with another.
-Common protocols on the Internet include [HTTP](#http) and [SSH](#ssh).
+:   1台のコンピュータが別のコンピュータと通信する方法を定義する一連のルール。インターネット上で一般的なプロトコルには[HTTP](#http)や[SSH](#ssh)があります。
 
 [remote]{#remote}
-:   (of a repository) A version control [repository](#repository) connected to another,
-in such way that both can be kept in sync exchanging [commits](#commit).
+:   （リポジトリ）他のリポジトリと接続され、[コミット](#commit)を交換することで同期を保つことができる[バージョン管理](#version-control)の[リポジトリ](#repository)。
 
 [repository]{#repository}
-:   A storage area where a [version control](#version-control) system
-stores the full history of [commits](#commit) of a project and information
-about who changed what, when.
+:   プロジェクトの[コミット](#commit)の完全な履歴と、誰がいつ何を変更したかに関する情報を保存する[バージョン管理](#version-control)システムの保存領域。
 
 [resolve]{#resolve}
-:   To eliminate the [conflicts](#conflict) between two or more incompatible changes to a file or set of files
-being managed by a [version control](#version-control) system.
+:   [バージョン管理](#version-control)システムで管理されているファイルまたはファイルセットへの2つ以上の互換性のない変更間の[コンフリクト](#conflict)を解消すること。
 
 [revision]{#revision}
-:   A synonym for [commit](#commit).
+:   [コミット](#commit)の同義語。
 
 [SHA-1]{#sha-1}
-:   [SHA-1 hashes](https://en.wikipedia.org/wiki/SHA-1) is what Git uses to compute identifiers, including for commits.
-To compute these, Git uses not only the actual change of a commit, but also its metadata (such as date, author,
-message), including the identifiers of all commits of preceding changes. This makes Git commit IDs virtually unique.
-I.e., the likelihood that two commits made independently, even of the same change, receive the same ID is exceedingly
-small.
+:   [SHA-1ハッシュ](https://en.wikipedia.org/wiki/SHA-1)はGitが識別子を計算するために使用するものです。これにはコミットの実際の変更だけでなく、日付、著者、メッセージなどのメタデータ、さらには前の変更のすべてのコミット識別子も含まれます。このため、GitのコミットIDは事実上ユニークです。すなわち、独立して行われた2つのコミットが、同じ変更であっても同じIDを受け取る可能性は極めて低いです。
 
 [SSH]{#ssh}
-:   The Secure Shell [protocol](#protocol) used for secure communication between computers.
+:   コンピュータ間での安全な通信に使用されるセキュアシェル[プロトコル](#protocol)。
 
 [timestamp]{#timestamp}
-:   A record of when a particular event occurred.
+:   特定のイベントが発生した時刻の記録。
 
 [version control]{#version-control}
-:   A tool for managing changes to a set of files.
-Each set of changes creates a new [commit](#commit) of the files;
-the version control system allows users to recover old commits reliably,
-and helps manage conflicting changes made by different users.
+:   ファイルセットへの変更を管理するツール。各変更セットは新しい[コミット](#commit)を作成します。バージョン管理システムは、古いコミットを確実に復元できるようにし、異なるユーザーによって行われた競合する変更を管理するのに役立ちます。

@@ -1,73 +1,59 @@
 ---
-title: Collaborating
+title: コラボレーション
 teaching: 25
 exercises: 0
 ---
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- Clone a remote repository.
-- Collaborate by pushing to a common repository.
-- Describe the basic collaborative workflow.
+- リモートリポジトリをクローンする。
+- 共通リポジトリにプッシュしてコラボレーションする。
+- 基本的な共同作業のワークフローを説明する。
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- How can I use version control to collaborate with other people?
+- バージョン管理をどのように使って他の人と共同作業できますか？
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-For the next step, get into pairs.  One person will be the "Owner" and the other
-will be the "Collaborator". The goal is that the Collaborator add changes into
-the Owner's repository. We will switch roles at the end, so both persons will
-play Owner and Collaborator.
+次のステップでは、ペアになって進めてください。一人は「オーナー」、もう一人は「コラボレーター」となります。
+目的は、コラボレーターがオーナーのリポジトリに変更を加えることです。最後に役割を交代するので、両方がオーナーとコラボレーターの両方を体験します。
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
-## Practicing By Yourself
+## 一人で練習する場合
 
-If you're working through this lesson on your own, you can carry on by opening
-a second terminal window.
-This window will represent your partner, working on another computer. You
-won't need to give anyone access on GitHub, because both 'partners' are you.
+このレッスンを一人で進めている場合は、2つ目のターミナルウィンドウを開くことで続行できます。
+この新しいウィンドウが、別のコンピュータで作業しているパートナーを表します。
+GitHubで誰かにアクセスを許可する必要はありません。なぜなら、両方の「パートナー」は自分だからです。
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-The Owner needs to give the Collaborator access. In your repository page on GitHub, click the "Settings"
-button on the right, select "Collaborators", click "Add people", and
-then enter your partner's username.
+オーナーはコラボレーターにアクセス権を与える必要があります。GitHubのリポジトリページで、「Settings」ボタンをクリックし、「Collaborators」を選択し、「Add people」をクリックして、パートナーのユーザー名を入力します。
 
-![](fig/github-add-collaborators.png){alt='A screenshot of the GitHub Collaborators settings page, which is accessed by clicking "Settings" then "Collaborators"'}
+![](fig/github-add-collaborators.png){alt='GitHubのCollaborators設定ページのスクリーンショット。「Settings」をクリックし、「Collaborators」を選択してアクセスします'}
 
-To accept access to the Owner's repo, the Collaborator
-needs to go to [https://github.com/notifications](https://github.com/notifications)
-or check for email notification. Once there she can accept access to the Owner's repo.
+コラボレーターは、オーナーのリポジトリへのアクセスを受け入れる必要があります。[https://github.com/notifications](https://github.com/notifications) にアクセスするか、メール通知を確認します。そこでオーナーのリポジトリへのアクセスを承認できます。
 
-Next, the Collaborator needs to download a copy of the Owner's repository to her
-machine. This is called "cloning a repo".
+次に、コラボレーターはオーナーのリポジトリのコピーを自分のマシンにダウンロードします。これを「リポジトリをクローンする」と呼びます。
 
-The Collaborator doesn't want to overwrite her own version of `planets.git`, so
-needs to clone the Owner's repository to a different location than her own
-repository with the same name.
+コラボレーターは自分の `planets.git` バージョンを上書きしたくないため、同じ名前のリポジトリを持つ自分のリポジトリとは異なる場所にオーナーのリポジトリをクローンする必要があります。
 
-To clone the Owner's repo into her `Desktop` folder, the Collaborator enters:
+コラボレーターがオーナーのリポジトリを自分の `Desktop` フォルダにクローンするには、次のコマンドを入力します：
 
 ```bash
 $ git clone git@github.com:vlad/planets.git ~/Desktop/vlad-planets
 ```
 
-Replace 'vlad' with the Owner's username.
+'vlad' をオーナーのユーザー名に置き換えてください。
 
-If you choose to clone without the clone path
-(`~/Desktop/vlad-planets`) specified at the end,
-you will clone inside your own planets folder!
-Make sure to navigate to the `Desktop` folder first.
+クローンパス（`~/Desktop/vlad-planets`）を指定せずにクローンを実行すると、自分の `planets` フォルダ内にクローンされてしまいます！ 必ず最初に `Desktop` フォルダに移動してください。
 
-![](fig/github-collaboration.svg){alt='A diagram showing that "git clone" can create a copy of a remote GitHub repository, allowing a second person to create their own local repository that they can make changes to.'}
+![](fig/github-collaboration.svg){alt='「git clone」を使用してリモートGitHubリポジトリのコピーを作成し、別の人がローカルリポジトリを作成して変更を加えられるようにする方法を示す図'}
 
-The Collaborator can now make a change in her clone of the Owner's repository,
-exactly the same way as we've been doing before:
+コラボレーターは、オーナーのリポジトリのクローン内で、これまでと同じ方法で変更を加えることができます：
 
 ```bash
 $ cd ~/Desktop/vlad-planets
@@ -89,7 +75,7 @@ $ git commit -m "Add notes about Pluto"
  create mode 100644 pluto.txt
 ```
 
-Then push the change to the _Owner's repository_ on GitHub:
+その後、変更をGitHub上の_オーナーのリポジトリ_にプッシュします：
 
 ```bash
 $ git push origin main
@@ -106,50 +92,34 @@ To https://github.com/vlad/planets.git
    9272da5..29aba7c  main -> main
 ```
 
-Note that we didn't have to create a remote called `origin`: Git uses this
-name by default when we clone a repository.  (This is why `origin` was a
-sensible choice earlier when we were setting up remotes by hand.)
+リモートを `origin` と呼ぶ必要がなかったことに注目してください：Gitはリポジトリをクローンしたときにデフォルトでこの名前を使用します。
+（これは、以前リモートを手動で設定した際に `origin` を使用したのが妥当であった理由です。）
 
-Take a look at the Owner's repository on GitHub again, and you should be
-able to see the new commit made by the Collaborator. You may need to refresh
-your browser to see the new commit.
+もう一度オーナーのリポジトリをGitHubで確認すると、コラボレーターによって作成された新しいコミットが表示されるはずです。ブラウザを更新して新しいコミットを確認してください。
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
-## Some more about remotes
+## リモートについてさらに詳しく
 
-In this episode and the previous one, our local repository has had
-a single "remote", called `origin`. A remote is a copy of the repository
-that is hosted somewhere else, that we can push to and pull from, and
-there's no reason that you have to work with only one. For example,
-on some large projects you might have your own copy in your own GitHub
-account (you'd probably call this `origin`) and also the main "upstream"
-project repository (let's call this `upstream` for the sake of examples).
-You would pull from `upstream` from time to
-time to get the latest updates that other people have committed.
+このエピソードと前のエピソードでは、ローカルリポジトリには `origin` と呼ばれる単一の「リモート」が設定されていました。
+リモートは、どこか別の場所にホストされているリポジトリのコピーであり、プッシュやプルを行うことができます。また、1つだけで作業する必要はありません。
+たとえば、大規模なプロジェクトでは、自分のGitHubアカウントにあるコピー（おそらく `origin` と呼ぶ）と、メインの「上流」プロジェクトリポジトリ（例として `upstream` と呼ぶ）を持つことがあります。
+他の人がコミットした最新の更新を取得するために、時々 `upstream` からプルします。
 
-Remember that the name you give to a remote only exists locally. It's
-an alias that you choose - whether `origin`, or `upstream`, or `fred` -
-and not something intrinstic to the remote repository.
+リモートに付ける名前はローカルでのみ存在します。それはエイリアスであり、`origin`、`upstream`、`fred` など、選んだ名前です。
+リモートリポジトリ自体には固有の名前はありません。
 
-The `git remote` family of commands is used to set up and alter the remotes
-associated with a repository. Here are some of the most useful ones:
+`git remote` ファミリーのコマンドを使用して、リモートの設定や変更を行います。以下は最も役立つコマンドです：
 
-- `git remote -v` lists all the remotes that are configured (we already used
-  this in the last episode)
-- `git remote add [name] [url]` is used to add a new remote
-- `git remote remove [name]` removes a remote. Note that it doesn't affect the
-  remote repository at all - it just removes the link to it from the local repo.
-- `git remote set-url [name] [newurl]` changes the URL that is associated
-  with the remote. This is useful if it has moved, e.g. to a different GitHub
-  account, or from GitHub to a different hosting service. Or, if we made a typo when
-  adding it!
-- `git remote rename [oldname] [newname]` changes the local alias by which a remote
-  is known - its name. For example, one could use this to change `upstream` to `fred`.
+- `git remote -v`: 設定されているすべてのリモートを一覧表示します（前のエピソードで使用しました）。
+- `git remote add [name] [url]`: 新しいリモートを追加します。
+- `git remote remove [name]`: リモートを削除します。これはリモートリポジトリ自体には影響せず、ローカルリポジトリからリンクを削除するだけです。
+- `git remote set-url [name] [newurl]`: リモートに関連付けられているURLを変更します。たとえば、別のGitHubアカウントやホスティングサービスに移動した場合、またはURLを追加時にタイプミスをした場合に使用します。
+- `git remote rename [oldname] [newname]`: リモートのローカルエイリアス（名前）を変更します。たとえば、`upstream` を `fred` に変更できます。
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-To download the Collaborator's changes from GitHub, the Owner now enters:
+コラボレーターの変更をGitHubからダウンロードするために、オーナーは次のコマンドを入力します：
 
 ```bash
 $ git pull origin main
@@ -171,55 +141,49 @@ Fast-forward
  create mode 100644 pluto.txt
 ```
 
-Now the three repositories (Owner's local, Collaborator's local, and Owner's on
-GitHub) are back in sync.
+これで3つのリポジトリ（オーナーのローカル、コラボレーターのローカル、オーナーのGitHub上のリポジトリ）が再び同期されました。
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
-## A Basic Collaborative Workflow
+## 基本的な共同作業のワークフ
 
-In practice, it is good to be sure that you have an updated version of the
-repository you are collaborating on, so you should `git pull` before making
-our changes. The basic collaborative workflow would be:
+ロー
 
-- update your local repo with `git pull origin main`,
-- make your changes and stage them with `git add`,
-- commit your changes with `git commit -m`, and
-- upload the changes to GitHub with `git push origin main`
+実際には、共同作業を行っているリポジトリの最新バージョンを取得していることを確認するのが良い習慣です。そのため、変更を加える前に `git pull` を実行してください。基本的な共同作業のワークフローは次のようになります：
 
-It is better to make many commits with smaller changes rather than
-of one commit with massive changes: small commits are easier to
-read and review.
+- `git pull origin main` を使用してローカルリポジトリを更新する。
+- 変更を加え、それらを `git add` でステージする。
+- `git commit -m` を使用して変更をコミットする。
+- `git push origin main` を使用して変更をGitHubにアップロードする。
+
+1回の大規模な変更を含むコミットよりも、小さな変更を含む多くのコミットを行う方が望ましいです。小さなコミットの方が読みやすく、レビューしやすいからです。
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Switch Roles and Repeat
+## 役割を交代して再実行
 
-Switch roles and repeat the whole process.
+役割を交代し、全プロセスを繰り返してください。
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Review Changes
+## 変更をレビューする
 
-The Owner pushed commits to the repository without giving any information
-to the Collaborator. How can the Collaborator find out what has changed with
-command line? And on GitHub?
+オーナーがコラボレーターに情報を与えずにリポジトリにコミットをプッシュしました。
+コマンドラインでは、コラボレーターはどのようにして変更を確認できますか？
+また、GitHubではどうでしょうか？
 
 :::::::::::::::  solution
 
-## Solution
+## 解答
 
-On the command line, the Collaborator can use `git fetch origin main`
-to get the remote changes into the local repository, but without merging
-them. Then by running `git diff main origin/main` the Collaborator
-will see the changes output in the terminal.
+コマンドラインでは、コラボレーターは `git fetch origin main` を使用してリモートの変更をローカルリポジトリに取得できます。ただし、マージは行われません。
+その後、`git diff main origin/main` を実行することで、変更をターミナルに表示できます。
 
-On GitHub, the Collaborator can go to the repository and click on
-"commits" to view the most recent commits pushed to the repository.
+GitHubでは、コラボレーターがリポジトリにアクセスして「commits」をクリックすると、リポジトリにプッシュされた最新のコミットを見ることができます。
 
 :::::::::::::::::::::::::
 
@@ -227,30 +191,26 @@ On GitHub, the Collaborator can go to the repository and click on
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Comment Changes in GitHub
+## GitHubで変更にコメントする
 
-The Collaborator has some questions about one line change made by the Owner and
-has some suggestions to propose.
+コラボレーターがオーナーによる1行の変更について質問があり、提案をしたいとします。
 
-With GitHub, it is possible to comment on the diff of a commit. Over the line of
-code to comment, a blue comment icon appears to open a comment window.
+GitHubでは、コミットの差分にコメントを追加することが可能です。コメントを付けたいコード行の上に青いコメントアイコンが表示され、コメントウィンドウを開くことができます。
 
-The Collaborator posts her comments and suggestions using the GitHub interface.
+コラボレーターはGitHubインターフェースを使用してコメントと提案を投稿します。
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Version History, Backup, and Version Control
+## バージョン履歴、バックアップ、バージョン管理
 
-Some backup software can keep a history of the versions of your files. They also
-allows you to recover specific versions. How is this functionality different from version control?
-What are some of the benefits of using version control, Git and GitHub?
+一部のバックアップソフトウェアは、ファイルのバージョン履歴を保持し、特定のバージョンを復元することができます。この機能はバージョン管理とはどのように異なりますか？また、バージョン管理（GitやGitHub）の利点は何ですか？
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- `git clone` copies a remote repository to create a local repository with a remote called `origin` automatically set up.
+- `git clone` はリモートリポジトリをコピーして、リモートが自動的に `origin` として設定されたローカルリポジトリを作成します。
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
