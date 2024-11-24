@@ -1,192 +1,143 @@
 ---
-title: 'Supplemental: Using Git from RStudio'
+title: "補足: RStudio での Git の使用方法"
 teaching: 10
 exercises: 0
 ---
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- Understand how to use Git from RStudio.
+- RStudio を使用して Git を利用する方法を理解する。
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- How can I use Git with RStudio?
+- RStudio で Git をどのように使うことができますか？
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-Version control can be very useful when developing data analysis scripts. For
-that reason, the popular development environment
-[RStudio][rstudio] for the R programming language has built-in
-integration with Git. While some advanced Git features still require the
-command-line, RStudio has a nice interface for many common Git operations.
+データ分析スクリプトを開発する際にバージョン管理は非常に便利です。そのため、R プログラミング言語用の人気開発環境である [RStudio][rstudio] には、Git と統合された機能が組み込まれています。  
+一部の高度な Git 機能はコマンドラインを必要としますが、RStudio は多くの一般的な Git 操作に便利なインターフェイスを提供します。
 
-RStudio allows us to create a [project][rstudio-projects] associated with a
-given directory to keep track of various related files. To be able to track the
-development of the project over time, to be able to revert to previous
-versions, and to collaborate with others, we version control the Rstudio
-project with Git. To get started using Git in RStudio, we create a new project:
+RStudio では、特定のディレクトリに関連するさまざまなファイルを管理するために [プロジェクト][rstudio-projects] を作成できます。プロジェクトの進行状況を追跡し、以前のバージョンに戻したり、他の人とコラボレーションしたりするために、RStudio プロジェクトを Git でバージョン管理します。RStudio で Git を使用するには、新しいプロジェクトを作成します：
 
-![](fig/RStudio_screenshot_newproject.png){alt='RStudio screenshot showing the file menu dropdown with "New Project..." selected'}
+![](fig/RStudio_screenshot_newproject.png){alt='RStudio のスクリーンショット。「New Project...」が選択されたファイルメニュードロップダウンを表示'}
 
-This opens a dialog asking us how we want to create the project. We have
-some options here. Let's say that we want to use RStudio with the planets
-repository that we already made. Since that repository lives in a directory on
-our computer, we choose the option "Existing Directory":
+この操作により、プロジェクトをどのように作成するかを尋ねるダイアログが開きます。いくつかのオプションがあります。ここでは、既に作成した `planets` リポジトリを RStudio で使用したいとします。そのリポジトリがコンピュータ上のディレクトリに存在するため、「Existing Directory」オプションを選択します：
 
-![](fig/RStudio_screenshot_existingdirectory.png){alt='RStudio screenshot showing New Project dialog window with "Create project from existing directory" selected'}
+![](fig/RStudio_screenshot_existingdirectory.png){alt='RStudio のスクリーンショット。「Create project from existing directory」が選択された New Project ダイアログウィンドウ'}
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
-## Do You See a "Version Control" Option?
+## 「Version Control」オプションが表示されていますか？
 
-Although we're not going to use it here, there should be a "version control"
-option on this menu. That is what you would click on if you wanted to
-create a project on your computer by cloning a repository from GitHub.
-If that option is not present, it probably means that RStudio doesn't know
-where your Git executable is, and you won't be able to progress further
-in this lesson until you tell RStudio where it is.
+ここでは使用しませんが、このメニューには「Version Control」オプションが表示されるはずです。このオプションは、GitHub からリポジトリをクローンしてプロジェクトを作成する場合にクリックします。  
+このオプションが表示されない場合、RStudio が Git 実行可能ファイルの場所を認識していない可能性があります。このレッスンを進めるには、RStudio に Git の場所を教える必要があります。
 
-### Find your Git Executable
+### Git 実行可能ファイルを見つける
 
-First let's make sure that Git is installed on your computer.
-Open your shell on Mac or Linux, or on Windows open the command prompt
-and then type:
+まず、Git がコンピュータにインストールされていることを確認します。macOS または Linux の場合はシェルを開き、Windows の場合はコマンドプロンプトを開いて次を入力します：
 
-- `which git` (macOS, Linux)
-- `where git` (Windows)
+- `which git`（macOS, Linux）
+- `where git`（Windows）
 
-If there is no version of Git on your computer, please follow the
-[Git installation instructions](https://swcarpentry.github.io/git-novice/#installing-git)
-in the setup of this lesson to install Git now. Next open your shell or command prompt
-and type `which git` (macOS, Linux), or `where git` (Windows).
-Copy the path to the git executable.
+コンピュータに Git がインストールされていない場合は、[Git のインストール手順](https://swcarpentry.github.io/git-novice/#installing-git) を参考にインストールしてください。その後、再度 `which git`（macOS, Linux）、または `where git`（Windows）を入力して、Git 実行可能ファイルのパスをコピーします。
 
-On one Windows computer which had GitHub Desktop installed on it, the path was:
+例：Windows で GitHub Desktop がインストールされている場合、パスは次のようになります：  
 `C:/Users/UserName/AppData/Local/GitHubDesktop/app-1.1.1/resources/app/git/cmd/git.exe`
 
-NOTE: The path on your computer will be somewhat different.
+### RStudio に Git の場所を指定する
 
-### Tell RStudio where to find GitHub
-
-In RStudio, go to the `Tools` menu > `Global Options` > `Git/SVN` and then
-browse to the Git executable you found in the command prompt or shell. Now restart
-RStudio.
-Note: Even if you have Git installed, you may need
-to accept the Xcode license if you are using macOS.
-
+RStudio のメニューから `Tools` > `Global Options` > `Git/SVN` に進み、見つけた Git 実行可能ファイルを参照して設定します。その後、RStudio を再起動してください。  
+注意：macOS を使用している場合は、Git がインストールされていても Xcode のライセンスを承認する必要がある場合があります。
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-Next, RStudio will ask which existing directory we want to use. Click
-"Browse..." and navigate to the correct directory, then click "Create Project":
+次に、RStudio は使用する既存のディレクトリを尋ねます。「Browse...」をクリックして該当するディレクトリに移動し、「Create Project」をクリックします：
 
-![](fig/RStudio_screenshot_navigateexisting.png)
+![](fig/RStudio_screenshot_navigateexisting.png){alt='「Create Project From Existing Directory」ダイアログを表示した RStudio ウィンドウ。ダイアログでは、プロジェクトの作業ディレクトリが "~/Desktop/planets" に設定されています'}
 
-Ta-da! We have created a new project in RStudio within the existing planets
-repository. Notice the vertical "Git" menu in the menu bar. RStudio has
-recognized that the current directory is a Git repository, and gives us a
-number of tools to use Git:
+これで、既存の `planets` リポジトリ内に RStudio の新しいプロジェクトが作成されました。メニューバーに縦型の「Git」メニューが表示されていることに注目してください。  
+RStudio は現在のディレクトリが Git リポジトリであることを認識し、Git を操作するためのツールを提供します：
 
-![](fig/RStudio_screenshot_afterclone.png){alt='RStudio window after new project is created with large arrow pointing to vertical Git menu bar.'}
+![](fig/RStudio_screenshot_afterclone.png){alt='新しいプロジェクト作成後の RStudio ウィンドウ。縦型 Git メニューバーを指す矢印が表示されている'}
 
-To edit the existing files in the repository, we can click on them in the
-"Files" panel on the lower right. Now let's add some additional information
-about Pluto:
+リポジトリ内の既存ファイルを編集するには、右下の「Files」パネルでファイルをクリックします。次に、冥王星に関する追加情報を追加してみましょう：
 
-![](fig/RStudio_screenshot_editfiles.png)
+![](fig/RStudio_screenshot_editfiles.png){alt='「pluto.txt」ファイルを編集するためにエディタパネルを使用している RStudio ウィンドウ'}
 
-Once we have saved our edited files, we can use RStudio to commit the changes
-by clicking on "Commit..." in the Git menu:
+編集したファイルを保存した後、RStudio の Git メニューから「Commit...」をクリックして変更をコミットできます：
 
-![](fig/RStudio_screenshot_commit.png){alt='RStudio screenshot showing the Git menu dropdown with "Commit..." selected'}
+![](fig/RStudio_screenshot_commit.png){alt='「Commit...」オプションが選択された Git メニュードロップダウンを表示した RStudio のスクリーンショット'}
 
-This will open a dialogue where we can select which files to commit (by
-checking the appropriate boxes in the "Staged" column), and enter a commit
-message (in the upper right panel). The icons in the "Status" column indicate
-the current status of each file. Clicking on a file shows information about
-changes in the lower panel (using output of `git diff`). Once everything is the
-way we want it, we click "Commit":
+これにより、コミットするファイルを選択し（「Staged」列で該当するボックスをチェック）、コミットメッセージを入力するダイアログが開きます。  
+「Status」列のアイコンは各ファイルの現在の状態を示します。ファイルをクリックすると、下部パネルにその変更情報（`git diff` の出力を使用）が表示されます。すべてが望み通りになったら、「Commit」をクリックします：
 
-![](fig/RStudio_screenshot_review.png)
+![](fig/RStudio_screenshot_review.png){alt='「Review Changes」ダイアログを表示した RStudio スクリーンショット。左上パネルにはコミットに含めるか除外するファイルのリストが表示され、右上パネルではコミットメッセージが入力されています。下部パネルには、左上パネルで選択されたファイルに関する情報が表示されています'}
 
-The changes can be pushed by selecting "Push Branch" from the Git menu. There
-are also options to pull from the remote repository, and to view the commit
-history:
+変更をプッシュするには、Git メニューから「Push Branch」を選択します。リモートリポジトリからのプルや、コミット履歴の表示オプションもあります：
 
-![](fig/RStudio_screenshot_history.png){alt='RStudio screenshot showing the git menu dropdown with "History" selected'}
+![](fig/RStudio_screenshot_history.png){alt='「History」オプションが選択された Git メニュードロップダウンを表示した RStudio のスクリーンショット'}
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
-## Are the Push/Pull Commands Grayed Out?
+## Push/Pull コマンドがグレーアウトしている場合
 
-Grayed out Push/Pull commands generally mean that RStudio doesn't know the
-location of your remote repository (e.g. on GitHub). To fix this, open a
-terminal to the repository and enter the command: `git push -u origin main`. Then restart RStudio.
-
+Push/Pull コマンドがグレーアウトしている場合、RStudio がリモートリポジトリ（例：GitHub）の場所を認識していない可能性があります。これを修正するには、リポジトリ内でターミナルを開き、次のコマンドを入力してください：  
+`git push -u origin main`  
+その後、RStudio を再起動します。
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-If we click on "History", we can see a graphical version of what `git log`
-would tell us:
+「History」をクリックすると、`git log` が表示する内容をグラフィカルに確認できます：
 
-![](fig/RStudio_screenshot_viewhistory.png)
+![](fig/RStudio_screenshot_viewhistory.png){alt='「History」ボタンを押した後に表示される「Review Changes」ダイアログを表示した RStudio のスクリーンショット。上部パネルにはリポジトリ内のコミットがリストされており、下部パネルには選択されたコミットに含まれる変更が表示されている'}
 
-RStudio creates a number of files that it uses to keep track of a project. We
-often don't want to track these, in which case we add them to our `.gitignore`
-file:
+RStudio はプロジェクトを管理するためにいくつかのファイルを作成します。これらのファイルを追跡したくない場合は `.gitignore` ファイルに追加します：
 
-![](fig/RStudio_screenshot_gitignore.png){alt='RStudio screenshot showing .gitignore open in the editor pane with the files .Rproj.user, .Rhistory, .RData, and \*.Rproj added to the end'}
+![](fig/RStudio_screenshot_gitignore.png){alt='.gitignore がエディタペインに表示され、末尾に .Rproj.user, .Rhistory, .RData, \*.Rproj が追加されている RStudio のスクリーンショット'}
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
-## Tip: versioning disposable output
+## ヒント: 一時的な出力のバージョン管理
 
-Generally you do not want to version control disposable output (or read-only
-data). You should modify the `.gitignore` file to tell Git to ignore these
-files and directories.
+通常、一時的
 
+な出力（または読み取り専用データ）をバージョン管理する必要はありません。  
+これらのファイルやディレクトリを Git に無視させるために `.gitignore` ファイルを修正してください。
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Challenge
+## チャレンジ
 
-1. Create a new directory within your project called `graphs`.
-2. Modify the `.gitignore` so that the `graphs` directory is not version controlled.
+1. プロジェクト内に `graphs` という新しいディレクトリを作成してください。
+2. `.gitignore` を修正して `graphs` ディレクトリをバージョン管理対象から除外してください。
 
 :::::::::::::::  solution
 
-## Solution to Challenge
+## チャレンジの解答
 
-This can be done in Rstudio:
+RStudio 内で次のコマンドを実行します：
 
 ```r
 dir.create("./graphs")
 ```
 
-Then open up the `.gitignore` file from the right-hand panel of Rstudio and add
-`graphs/` to the list of files to ignore.
-
-
+その後、RStudio の右側パネルから `.gitignore` ファイルを開き、リストに `graphs/` を追加してください。
 
 :::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-There are many more features in the RStudio Git menu, but these should be
-enough to get you started!
+RStudio の Git メニューにはさらに多くの機能がありますが、これらの操作で基本的な使用方法を習得できるでしょう！
 
 [rstudio]: https://www.rstudio.com/
 [rstudio-projects]: https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects
 
-
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- Using RStudio's Git integration allows you to version control a project over time.
+- RStudio の Git 統合を使用すると、プロジェクトのバージョン管理を簡単に行えます。
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
-
-
